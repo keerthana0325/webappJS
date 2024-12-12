@@ -1,0 +1,39 @@
+name: CI/CD Pipeline for Node.js Application
+
+on:
+  push:
+    branches:
+      - main  # This runs the workflow whenever code is pushed to the 'main' branch
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Checkout the code from GitHub
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      # Step 2: Set up Node.js
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14'  # Choose the version of Node.js you need
+
+      # Step 3: Install dependencies
+      - name: Install dependencies
+        run: npm install
+
+      # Step 4: Run tests (optional)
+      - name: Run tests
+        run: npm test
+
+      # Step 5: Build the Docker image
+      - name: Build Docker image
+        run: docker build -t my-app .
+
+      # Step 6: Push the Docker image to Docker Hub (optional, or you can push to ECR)
+      - name: Push Docker image to Docker Hub
+        run: |
+          echo ${{ secrets.DOCKER_PASSWORD }} | docker login --username ${{ secrets.DOCKER_USERNAME }} --password-stdin
+          docker push my-app:latest
