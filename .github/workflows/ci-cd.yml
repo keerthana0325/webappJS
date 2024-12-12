@@ -3,7 +3,7 @@ name: CI/CD Pipeline for Node.js Application
 on:
   push:
     branches:
-      - main  # This runs the workflow whenever code is pushed to the 'main' branch
+      - master  # This runs the workflow whenever code is pushed to the 'main' branch
 
 jobs:
   build:
