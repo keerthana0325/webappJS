@@ -1,0 +1,1 @@
+This project includes the creation of a Node.js application and the setup of a CI/CD pipeline using GitHub Actions. The application is containerized with Docker to ensure consistent development and production environments. The aim was to automate the testing and deployment process, making the workflow more efficient and reducing manual intervention.
